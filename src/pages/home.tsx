@@ -4,7 +4,7 @@ import { findAllArtists } from "../api/artists/find-all";
 import Artist from "../components/artists/artist";
 
 export default function Home() {
-  const { isPending, data } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ["artists"],
     queryFn: () => findAllArtists(),
   });
@@ -12,12 +12,14 @@ export default function Home() {
   return (
     <div>
       {data && (
-        <div className="grid gap-2 grid-cols-1 lg:grid-cols-3">
+        <div className="grid gap-2 grid-cols-1 lg:grid-cols-3 p-2 bg-gray-500">
           {data.map((artist) => (
             <Artist artist={artist} key={artist.id} />
           ))}
         </div>
       )}
+      {isPending && <span>loading...</span>}
+      {error && <span>Something went wrong!</span>}
     </div>
   );
 }
