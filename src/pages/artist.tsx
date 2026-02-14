@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { findOneArtist } from "../api/artists/find-one";
-import Song from "../components/song"
+import Song from "../components/song";
 
 export default function ArtistPage() {
   const { artistId } = useParams();
 
   const { isPending, error, data } = useQuery({
-    queryKey: ["artist"],
+    queryKey: ["artist", artistId],
     queryFn: () => findOneArtist(artistId!),
   });
 
@@ -26,9 +26,11 @@ export default function ArtistPage() {
             </div>
             <div className="leading-loose text-lg">{data.description}</div>
           </div>
-          <div className="gap-2 grid grid-cols-1 lg:grid-cols-5">{data.songs.map((song)=>(
-            <Song song={song} key={song.id} />
-          ))}</div>
+          <div className="gap-2 grid grid-cols-1 lg:grid-cols-5">
+            {data.songs.map((song) => (
+              <Song song={song} key={song.id} heroColor={data.heroColor} />
+            ))}
+          </div>
         </div>
       )}
     </div>
