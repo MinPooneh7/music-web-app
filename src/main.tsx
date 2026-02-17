@@ -10,6 +10,7 @@ import SongDetails from "./pages/song";
 import { PlayerFullSyncProvider } from "@splicemood/react-music-player";
 
 import Login from "./pages/login";
+import SignUp from "./pages/sign-up";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
   },
 ]);
 
