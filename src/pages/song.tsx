@@ -28,7 +28,12 @@ export default function SongDetails() {
             <div className="text-black text-2xl">{data.artist.name}</div>
 
             <div className="flex flex-col">
-              <MusicPlayer audioSrc={data.previewUrl} />
+              <MusicPlayer
+                prev={data.prevSongId}
+                next={data.nextSongId}
+                audioSrc={data.previewUrl}
+                key={songId}
+              />
             </div>
           </div>
         </div>

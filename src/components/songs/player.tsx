@@ -1,18 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause, Repeat } from "lucide-react";
+import { Play, Pause, Repeat, SkipForward, SkipBack } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface MusicPlayerProps {
   audioSrc: string;
   className?: string;
+  next: string | null;
+  prev: string | null;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({ audioSrc, className }) => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({
+  audioSrc,
+  next,
+  prev,
+  className,
+}) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
+
+  const navigate = useNavigate();
+
+  const onPrev = () => navigate(`/songs/${prev}`);
+
+  const onNext = () => navigate(`/songs/${next}`);
 
   // Load metadata
   useEffect(() => {
@@ -30,9 +44,17 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ audioSrc, className }) => {
     audio.addEventListener("loadedmetadata", handleLoadedMetadata);
     audio.addEventListener("timeupdate", handleTimeUpdate);
 
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+
     return () => {
       audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
       audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
     };
   }, []);
 
@@ -79,11 +101,26 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ audioSrc, className }) => {
     return `${minutes}:${seconds}`;
   };
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const tryPlay = async () => {
+      try {
+        await audio.play();
+      } catch (err) {
+        setIsPlaying(false);
+      }
+    };
+
+    tryPlay();
+  }, [audioSrc]);
+
   return (
     <div
       className={`flex flex-col gap-2.5 w-full max-w-md p-4 bg-gray-600 rounded-xl shadow-lg text-white ${className}`}
     >
-      <audio ref={audioRef} src={audioSrc} />
+      <audio ref={audioRef} src={audioSrc} autoPlay />
       <div className="flex gap-2">
         <div className="flex items-center gap-2 w-full">
           <span className="text-sm w-10">{formatTime(currentTime)}</span>
@@ -116,10 +153,26 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ audioSrc, className }) => {
       {/* Controls */}
       <div className="flex justify-center items-center gap-4 mb-3">
         <button
+          onClick={onPrev}
+          disabled={!prev}
+          className="disabled:text-gray-400 hover:text-black"
+        >
+          <SkipBack />
+        </button>
+
+        <button
           onClick={togglePlay}
           className="p-4 bg-black hover:bg-blue-950 rounded-full transition"
         >
           {isPlaying ? <Pause /> : <Play />}
+        </button>
+
+        <button
+          onClick={onNext}
+          disabled={!next}
+          className="disabled:text-gray-400 hover:text-black"
+        >
+          <SkipForward />
         </button>
       </div>
 

@@ -24,4 +24,6 @@ export interface Song {
   createdAt: Date;
   updatedAt: Date;
   artist: Artist;
+  prevSongId: string | null;
+  nextSongId: string | null;
 }
