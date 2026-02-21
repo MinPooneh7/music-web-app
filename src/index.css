@@ -13,6 +13,7 @@
 @theme inline {
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-primary-muted: var(--primary-muted);
   --color-text: var(--text);
 }
 
@@ -20,39 +21,51 @@
 :root {
   --primary: #4d276b;
   --secondary: #fc4747;
+  --primary-muted:#faa2a2;
   --text: #fff;
 }
 
 .green {
   --primary: #296b27;
   --secondary: #63e099;
+  --primary-muted:#9fff8a;
 }
 
 .blue {
   --primary: #413296;
   --secondary: #63aae0;
+  --primary-muted:#7d9bff;
 }
 
 .red {
   --primary: #6b0c0c;
   --secondary: #fc4747;
+  --primary-muted:#ff867d;
 }
 
 .purple {
   --primary: #4d276b;
   --secondary: #c987e6;
+  --primary-muted:#ca8aff;
 }
 
 .pink {
   --primary: #f52099;
   --secondary: #e687bd;
+  --primary-muted:#ff8ac4;
   --text: #000;
 }
 
 .orange {
   --primary: #fc942b;
   --secondary: #f5b576;
+  --primary-muted:#ffc07d;
   --text: #000;
+}
+.gray {
+  --primary: #262626;
+  --secondary:#6e6e6e;
+  --primary-muted:#adacad;
 }
 
 

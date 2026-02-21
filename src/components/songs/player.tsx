@@ -1,6 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause, Repeat, SkipForward, SkipBack } from "lucide-react";
+import {
+  Play,
+  Pause,
+  Repeat,
+  SkipForward,
+  SkipBack,
+  Heart,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Add from "../add-track";
 
 interface MusicPlayerProps {
   audioSrc: string;
@@ -152,29 +160,33 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
         </button>
       </div>
       {/* Controls */}
-      <div className="flex justify-center items-center gap-4 mb-3">
-        <button
-          onClick={onPrev}
-          disabled={!prev}
-          className="disabled:text-gray-500 hover:text-black"
-        >
-          <SkipBack />
-        </button>
+      <div className="flex w-full justify-between items-center">
+        <Add />
+        <div className="flex justify-center items-center gap-4 mb-3 w-full">
+          <button
+            onClick={onPrev}
+            disabled={!prev}
+            className="disabled:text-gray-500 hover:text-black"
+          >
+            <SkipBack />
+          </button>
 
-        <button
-          onClick={togglePlay}
-          className="p-4 bg-black hover:bg-blue-950 rounded-full transition"
-        >
-          {isPlaying ? <Pause /> : <Play />}
-        </button>
+          <button
+            onClick={togglePlay}
+            className="p-4 bg-black hover:bg-blue-950 rounded-full transition"
+          >
+            {isPlaying ? <Pause /> : <Play />}
+          </button>
 
-        <button
-          onClick={onNext}
-          disabled={!next}
-          className="disabled:text-gray-400 hover:text-black"
-        >
-          <SkipForward />
-        </button>
+          <button
+            onClick={onNext}
+            disabled={!next}
+            className="disabled:text-gray-400 hover:text-black"
+          >
+            <SkipForward />
+          </button>
+        </div>
+        <Heart />
       </div>
 
       {/* Progress */}
