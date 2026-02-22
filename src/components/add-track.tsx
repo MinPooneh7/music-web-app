@@ -7,8 +7,8 @@ import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 
 export default function Add({ songId }: { songId: string }) {
-    const [isOpen, setIsOpen] = useState(false);
-  
+  const [isOpen, setIsOpen] = useState(false);
+
   const { data } = useQuery({
     queryKey: ["playlist"],
     queryFn: () => getPlayList(),
@@ -16,7 +16,9 @@ export default function Add({ songId }: { songId: string }) {
 
   const { mutate } = useMutation({
     mutationFn: (playlistId: string) => addPlayList(playlistId, songId),
-    onSuccess: () => {setIsOpen(false)},
+    onSuccess: () => {
+      setIsOpen(false);
+    },
   });
 
   const handleAdd = (playListId: string) => {
@@ -28,7 +30,7 @@ export default function Add({ songId }: { songId: string }) {
       <DialogTrigger>
         <CirclePlus />
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="divide-y">
         {data?.playlists.map((playlist, index) => (
           <button key={index} onClick={() => handleAdd(playlist.id)}>
             {playlist.name}

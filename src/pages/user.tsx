@@ -23,7 +23,7 @@ export default function UserPage() {
   }, [user, navigate]);
   return (
     <div className="bg-linear-to-r from-primary to-secondary w-screen h-screen flex gap-4 p-17">
-      <div className="justify-between max-w-7xl mx-auto bg-gray-300/40 backdrop-blur-2xl border-primary rounded-2xl flex flex-col gap-9 p-7 items-center w-full">
+      <div className="justify-between max-w-7xl mx-auto bg-gray-300/40 overflow-auto backdrop-blur-2xl border-primary rounded-2xl flex flex-col gap-9 p-7 items-center w-full">
         <div className="flex flex-col gap-5">
           <div className="flex items-center justify-between w-full">
             <div className="flex gap-9 items-center">
