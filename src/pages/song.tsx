@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useParams } from "react-router-dom";
 
-export default function SongDetails() {
+export default function SongDetailsPage() {
   const { songId, playlistId } = useParams();
 
   const { isPending, error, data, refetch } = useQuery({

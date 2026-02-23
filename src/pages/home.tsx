@@ -4,7 +4,7 @@ import { findAllArtists } from "../api/artists/find-all";
 import Artist from "../components/artists/artist";
 import Header from "@/components/header";
 
-export default function Home() {
+export default function HomePage() {
   const { isPending, error, data } = useQuery({
     queryKey: ["artists"],
     queryFn: () => findAllArtists(),

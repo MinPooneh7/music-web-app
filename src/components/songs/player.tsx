@@ -174,7 +174,7 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
 
           <button
             onClick={togglePlay}
-            className="p-4 bg-black hover:bg-blue-950 rounded-full transition"
+            className="p-4 bg-black hover:bg-primary-dark rounded-full transition"
           >
             {isPlaying ? <Pause /> : <Play />}
           </button>

@@ -3,27 +3,27 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Home from "./pages/home";
+import HomePage from "./pages/home";
 import ArtistPage from "./pages/artist";
 import { TooltipProvider } from "./components/ui/tooltip";
-import SongDetails from "./pages/song";
+import SongDetailsPage from "./pages/song";
 import { PlayerFullSyncProvider } from "@splicemood/react-music-player";
 
 import { ThemeProvider } from "next-themes";
 
-import Login from "./pages/login";
-import SignUp from "./pages/sign-up";
+import LoginPage from "./pages/login";
+import SignUpPage from "./pages/sign-up";
 import Auth from "./components/auth";
 import UserPage from "./pages/user";
 import { THEMES } from "./components/theme-picker";
-import Likes from "./pages/like";
+import LikesPage from "./pages/like";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <HomePage />,
   },
   {
     path: "/artists/:artistId",
@@ -31,19 +31,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/songs/:songId",
-    element: <SongDetails />,
+    element: <SongDetailsPage />,
   },
-    {
+  {
     path: "/playlists/:playlistId/songs/:songId",
-    element: <SongDetails />,
+    element: <SongDetailsPage />,
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <LoginPage />,
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: <SignUpPage />,
   },
   {
     path: "/user",
@@ -51,8 +51,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/likes",
-    element :<Likes />
-  }
+    element: <LikesPage />,
+  },
 ]);
 
 createRoot(document.getElementById("root")!).render(

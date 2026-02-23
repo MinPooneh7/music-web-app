@@ -15,27 +15,52 @@
   --color-secondary: var(--secondary);
   --color-primary-muted: var(--primary-muted);
   --color-text: var(--text);
+  --color-primary-dark: var(--primary-dark);
 
   --animate-quiet: quiet 1.2s ease-in-out infinite;
   --animate-normal: normal 1.2s ease-in-out infinite;
   --animate-loud: loud 1.2s ease-in-out infinite;
 
   @keyframes quiet {
-    25% { transform: scaleY(.6); }
-    50% { transform: scaleY(.4); }
-    75% { transform: scaleY(.8); }
+    25% {
+      transform: scaleY(.6);
+    }
+
+    50% {
+      transform: scaleY(.4);
+    }
+
+    75% {
+      transform: scaleY(.8);
+    }
   }
 
   @keyframes normal {
-    25% { transform: scaleY(1); }
-    50% { transform: scaleY(.4); }
-    75% { transform: scaleY(.6); }
+    25% {
+      transform: scaleY(1);
+    }
+
+    50% {
+      transform: scaleY(.4);
+    }
+
+    75% {
+      transform: scaleY(.6);
+    }
   }
 
   @keyframes loud {
-    25% { transform: scaleY(1); }
-    50% { transform: scaleY(.4); }
-    75% { transform: scaleY(1.2); }
+    25% {
+      transform: scaleY(1);
+    }
+
+    50% {
+      transform: scaleY(.4);
+    }
+
+    75% {
+      transform: scaleY(1.2);
+    }
   }
 }
 
@@ -43,51 +68,60 @@
 :root {
   --primary: #4d276b;
   --secondary: #fc4747;
-  --primary-muted:#faa2a2;
+  --primary-muted: #faa2a2;
+  --primary-dark: #130d4a;
   --text: #fff;
 }
 
 .green {
   --primary: #296b27;
   --secondary: #63e099;
-  --primary-muted:#9fff8a;
+  --primary-muted: #9fff8a;
+  --primary-dark: #2f7a31;
 }
 
 .blue {
   --primary: #413296;
   --secondary: #63aae0;
-  --primary-muted:#7d9bff;
+  --primary-muted: #7d9bff;
+  --primaary-dark: #211a47;
 }
 
 .red {
   --primary: #6b0c0c;
   --secondary: #fc4747;
-  --primary-muted:#ff867d;
+  --primary-muted: #ff867d;
+  --primary-dark: #660101;
 }
 
 .purple {
   --primary: #4d276b;
   --secondary: #c987e6;
-  --primary-muted:#ca8aff;
+  --primary-muted: #ca8aff;
+  --primary-dark: #65157d;
 }
 
 .pink {
   --primary: #f52099;
   --secondary: #e687bd;
-  --primary-muted:#ff8ac4;
+  --primary-muted: #ff8ac4;
+  --primary-dark: #9e065f;
   --text: #000;
 }
 
 .orange {
   --primary: #fc942b;
   --secondary: #f5b576;
-  --primary-muted:#ffc07d;
+  --primary-muted: #ffc07d;
+  --primary-dark: #96380c;
   --text: #000;
 }
+
 .gray {
   --primary: #262626;
-  --secondary:#6e6e6e;
-  --primary-muted:#adacad;
+  --secondary: #6e6e6e;
+  --primary-muted: #adacad;
+  --primary-dark: #878787;
 }
 
 
