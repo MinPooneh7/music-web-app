@@ -16,7 +16,7 @@ export default function Header() {
             src={user.avatar || Profile}
           />
           <div className="flex flex-col items-center justify-center text-text">
-            <div className="text-2xl"> {user?.username}</div>
+            <div className="text-2xl"> {user.username}</div>
           </div>
         </Link>
       ) : (

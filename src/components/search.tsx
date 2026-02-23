@@ -8,7 +8,7 @@ import { Search as SearchIcon } from "lucide-react";
 export default function Search() {
   const [search, setSearch] = useState("");
 
-  const debouncedSearch = useDebounce(search, 800);
+  const debouncedSearch = useDebounce(search);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
