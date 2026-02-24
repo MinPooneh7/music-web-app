@@ -9,11 +9,9 @@ import {
 import { convertTime } from "@/lib/utils";
 
 export default function Artist({
-  song,
-  heroColor,
+  song
 }: {
   song: Song;
-  heroColor?: string;
 }) {
   return (
     <Tooltip>
@@ -29,7 +27,9 @@ export default function Artist({
           <div className="text-white text-2xl text-center">{song.title}</div>
         </Link>
       </TooltipTrigger>
-      <TooltipContent className="border-3" style={{ borderColor: heroColor }}>
+      <TooltipContent
+        className="border-3 bg-primary text-text"
+      >
         {convertTime(song.durationSec)}
       </TooltipContent>
     </Tooltip>

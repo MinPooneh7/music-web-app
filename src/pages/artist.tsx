@@ -32,7 +32,7 @@ export default function ArtistPage() {
           </div>
           <div className="gap-2 grid grid-cols-1 lg:grid-cols-5">
             {data.songs.map((song) => (
-              <Song song={song} key={song.id} heroColor={data.heroColor} />
+              <Song song={song} key={song.id} />
             ))}
           </div>
         </div>
