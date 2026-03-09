@@ -36,6 +36,7 @@ export default function Search() {
           {data.results.length === 0 && <span>Song not found!</span>}
         </div>
       )}
+
       {isFetching && <span>loading...</span>}
       {error && <span>erorrr!</span>}
     </div>

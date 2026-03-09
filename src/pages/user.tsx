@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getPlayList } from "@/api/playlist/play-list";
 import ThemePicker from "@/components/theme-picker";
 import Logout from "@/components/logout";
+import Delete from "@/components/ui/delete";
 
 export default function UserPage() {
   const user = useStore((state) => state.user);
@@ -52,7 +53,7 @@ export default function UserPage() {
 
             {data?.playlists.map((playlist, index) => (
               <div
-                className="border-2 rounded-4xl overflow-clip px-5 py-2 hover:bg-gray-300/40 backdrop-blur-2xl border-primary"
+                className="flex gap-2 border-2 rounded-4xl overflow-clip px-5 py-2 hover:bg-gray-300/40 backdrop-blur-2xl border-primary items-center justify-between"
                 key={index}
               >
                 <Link
@@ -65,6 +66,10 @@ export default function UserPage() {
                 >
                   <p className="truncate w-fit text-text">{playlist.name}</p>
                 </Link>
+                <Delete 
+                id={playlist.id} 
+                onSuccess={()=> refetch()}
+                />
               </div>
             ))}
           </div>
