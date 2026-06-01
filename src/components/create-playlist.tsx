@@ -1,6 +1,7 @@
 import { createPlayList } from "@/api/playlist/create-playlist";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useMutation } from "@tanstack/react-query";
+import { CirclePlus } from "lucide-react";
 import { useState } from "react";
 
 export default function CreatePlayList({
@@ -32,8 +33,9 @@ export default function CreatePlayList({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger className="font-bold items-center justify-center text-2xl text-text truncate">
-        New play list +
+      <DialogTrigger className="flex gap-2 py-2 hover:border-0 hover:rounded-3xl hover:bg-secondary/50 p-2 w-full justify-start">
+        <CirclePlus />
+        ADD PALYLIST
       </DialogTrigger>
       <DialogContent>
         <form onSubmit={onFormSubmit}>

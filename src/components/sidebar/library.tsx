@@ -1,48 +1,41 @@
-import { useState } from "react";
-
-import { motion, AnimatePresence } from "motion/react";
-import Playlist from "../playlist";
-import { Heart, ListMusic } from "lucide-react";
-import { Link } from "react-router-dom";
+import { getPlayList } from "@/api/playlist/play-list";
+import CreatePlayList from "../create-playlist";
+import { useQuery } from "@tanstack/react-query";
+import { Heart } from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 export default function Library() {
-  const [playlistHover, setPlaylistHover] = useState(false);
+  const onCreateSuccess = () => refetch();
+
+  const { refetch } = useQuery({
+    queryKey: ["song"],
+    queryFn: () => getPlayList(),
+  });
+
+  const linkClass =
+    "flex gap-2 py-2 p-2 w-full justify-start rounded-3xl transition-colors";
+
   return (
     <div>
-      <span className="py-2 p-2 text-gray-400 w-full flex justify-start">
+      <span className="text-gray-400 flex w-full justify-start p-2">
         LIBRARY
       </span>
-      <>
-        <div
-          className="relative"
-          onMouseEnter={() => setPlaylistHover(true)}
-          onMouseLeave={() => setPlaylistHover(false)}
-        >
-          <div className="flex gap-2 py-2 cursor-pointer hover:border-0 hover:rounded-3xl hover:bg-secondary/50 p-2 w-full justify-start">
-            <ListMusic />
-            PLAYLIST
-          </div>
 
-          <AnimatePresence>{playlistHover && <Playlist />}</AnimatePresence>
-        </div>
+      <CreatePlayList onSuccess={onCreateSuccess} />
 
-        <motion.div
-          animate={{
-            y: playlistHover ? 180 : 0,
-          }}
-          transition={{
-            duration: 0.3,
-          }}
+      <div className="flex">
+        <NavLink
+          to="/likes"
+          className={({ isActive }) =>
+            `${linkClass} ${
+              isActive ? "bg-secondary/50" : "hover:bg-secondary/50"
+            }`
+          }
         >
-          <Link
-            to="/likes"
-            className="flex gap-2 py-2 hover:border-0 hover:rounded-3xl hover:bg-secondary/50 p-2 w-full justify-start"
-          >
-            <Heart />
-            FAVORITE
-          </Link>
-        </motion.div>
-      </>
+          <Heart />
+          FAVORITE
+        </NavLink>
+      </div>
     </div>
   );
 }

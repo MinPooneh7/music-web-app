@@ -2,7 +2,7 @@ import useStore from "@/store/use-store";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import SettingsAvatar from "@/components/settings-avatar";
-import CreatePlayList from "@/components/create-playlist";
+
 import { useQuery } from "@tanstack/react-query";
 import { getPlayList } from "@/api/playlist/play-list";
 import ThemePicker from "@/components/theme-picker";
@@ -12,9 +12,8 @@ import Delete from "@/components/ui/delete";
 export default function UserPage() {
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
-  const onCreateSuccess = () => refetch();
 
-  const { data, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ["song"],
     queryFn: () => getPlayList(),
   });
@@ -47,10 +46,6 @@ export default function UserPage() {
             </Link>
           </div>
           <div className="flex flex-col gap-5 w-full">
-            <div className="border-2 rounded-4xl overflow-clip px-5 py-2 hover:bg-gray-300/40 backdrop-blur-2xl border-primary">
-              <CreatePlayList onSuccess={onCreateSuccess} />
-            </div>
-
             {data?.playlists.map((playlist, index) => (
               <div
                 className="flex gap-2 border-2 rounded-4xl overflow-clip px-5 py-2 hover:bg-gray-300/40 backdrop-blur-2xl border-primary items-center justify-between"

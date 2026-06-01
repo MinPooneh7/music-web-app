@@ -1,24 +1,36 @@
 import { House, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Explore() {
+  const baseClass =
+    "flex gap-2 py-2 p-2 w-full justify-start rounded-3xl transition-colors";
+
   return (
     <div>
-      <Link
+      <NavLink
         to="/"
-        className="flex gap-2 py-2 hover:border-0 hover:rounded-3xl hover:bg-secondary/50 p-2 w-full justify-start"
+        end
+        className={({ isActive }) =>
+          `${baseClass} ${
+            isActive ? "bg-secondary/50" : "hover:bg-secondary/50"
+          }`
+        }
       >
         <House />
         HOME
-      </Link>
+      </NavLink>
 
-      <Link
+      <NavLink
         to="/search"
-        className="flex gap-2 py-2 hover:border-0 hover:rounded-3xl hover:bg-secondary/50 p-2 w-full justify-start"
+        className={({ isActive }) =>
+          `${baseClass} ${
+            isActive ? "bg-secondary/50" : "hover:bg-secondary/50"
+          }`
+        }
       >
         <Search />
         SEARCH
-      </Link>
+      </NavLink>
     </div>
   );
 }
