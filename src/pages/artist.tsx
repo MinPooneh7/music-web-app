@@ -12,7 +12,7 @@ export default function ArtistPage() {
   });
 
   return (
-    <div className="flex p-3 bg-linear-to-r from-primary to-secondary overflow-auto h-screen justify-start items-start">
+    <div className="flex p-3 justify-start items-start">
       {data && (
         <div className="flex flex-col gap-2">
           <div className="border rounded-full p-2">

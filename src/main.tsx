@@ -16,25 +16,43 @@ import Auth from "./components/auth";
 import UserPage from "./pages/user";
 import { THEMES } from "./components/theme-picker";
 import LikesPage from "./pages/like";
+import SidebarLayout from "./layout";
+import Search from "./components/search";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/artists/:artistId",
-    element: <ArtistPage />,
-  },
-  {
-    path: "/songs/:songId",
-    element: <SongDetailsPage />,
-  },
-  {
-    path: "/playlists/:playlistId/songs/:songId",
-    element: <SongDetailsPage />,
+    path: "",
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/artists/:artistId",
+        element: <ArtistPage />,
+      },
+
+      {
+        path: "/playlists/:playlistId/songs/:songId",
+        element: <SongDetailsPage />,
+      },
+
+      {
+        path: "/user",
+        element: <UserPage />,
+      },
+      {
+        path: "/likes",
+        element: <LikesPage />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
+      },
+    ],
   },
   {
     path: "/login",
@@ -45,12 +63,8 @@ const router = createBrowserRouter([
     element: <SignUpPage />,
   },
   {
-    path: "/user",
-    element: <UserPage />,
-  },
-  {
-    path: "/likes",
-    element: <LikesPage />,
+    path: "/songs/:songId",
+    element: <SongDetailsPage />,
   },
 ]);
 
