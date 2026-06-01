@@ -74,14 +74,14 @@
 }
 
 .green {
-  --primary: #296b27;
+  --primary: #0b3b1b;
   --secondary: #63e099;
   --primary-muted: #9fff8a;
   --primary-dark: #2f7a31;
 }
 
 .blue {
-  --primary: #413296;
+  --primary: #131661;
   --secondary: #63aae0;
   --primary-muted: #7d9bff;
   --primaary-dark: #211a47;
@@ -95,14 +95,14 @@
 }
 
 .purple {
-  --primary: #4d276b;
+  --primary: #331163;
   --secondary: #c987e6;
   --primary-muted: #ca8aff;
   --primary-dark: #65157d;
 }
 
 .pink {
-  --primary: #f52099;
+  --primary: #ba1163;
   --secondary: #e687bd;
   --primary-muted: #ff8ac4;
   --primary-dark: #9e065f;
@@ -110,7 +110,7 @@
 }
 
 .orange {
-  --primary: #fc942b;
+  --primary: #a34e15;
   --secondary: #f5b576;
   --primary-muted: #ffc07d;
   --primary-dark: #96380c;
