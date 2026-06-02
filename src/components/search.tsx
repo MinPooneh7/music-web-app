@@ -21,23 +21,29 @@ export default function Search() {
   });
 
   return (
-    <div>
-      <div className="flex flex-col text-6xl text-text gap-1 p-10 px-40">
-        <span className="text-4xl px-2 text-white">Search</span>
+    <div className="flex flex-col w-328 mx-auto">
+      <div className="flex flex-col text-6xl text-text gap-1 py-10">
+        <span className="text-4xl px-2 text-white items-start">Search</span>
         <span className="text-xl px-2 text-gray-300">
           Find your favorite artist
         </span>
       </div>
-      <div className="items-center justify-center flex gap-2">
-        <SearchIcon className="absolute text-amber-300 py-3" />
-        <input
-          className="flex items-center justify-center border rounded-sm bg-gray-300/50 border-text py-2 hover:ring-10 ring-primary w-328 text-text px-2"
-          value={search}
-          onChange={handleChange}
-        />
+
+      <div className="items-center justify-center flex w-full">
+        <div className="relative flex w-full">
+          <div className="absolute top-0 left-0 ps-3 flex items-center justify-center h-full">
+            <SearchIcon className="text-white" />
+          </div>
+          <input
+            className="flex items-center justify-center w-full border-0 rounded-md ps-12 bg-gray-300/50 border-text py-2 hover:ring-10 ring-primary text-text px-2"
+            placeholder="Search songs..."
+            value={search}
+            onChange={handleChange}
+          />
+        </div>
       </div>
       {data && (
-        <div className="absolute z-100 flex flex-col py-2 bg-primary justify-center w-358 divide-y divide-gray-300">
+        <div className="flex flex-col z-100  py-1 w-328 divide-y divide-gray-300">
           {data.results.map((song) => (
             <SearchResult song={song} key={song.id} />
           ))}

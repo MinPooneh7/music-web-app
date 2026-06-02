@@ -4,7 +4,7 @@ export default function SearchResult({ song }: { song: Song }) {
   return (
     <Link
       to={`/songs/${song.id}`}
-      className="flex gap-1.5 bg-primary-dark p-1 hover:bg-gray-700"
+      className="flex gap-1.5 rounded-md bg-black/25 p-1 hover:bg-black/50"
     >
       <div>
         <img className="w-12 rounded-2xl" src={song.coverUrl} />
