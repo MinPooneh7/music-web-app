@@ -12,7 +12,7 @@ export default function Like({
   onSuccess: () => void;
 }) {
   const { mutate } = useMutation({
-    mutationFn: () => (song.isLiked ? unlike(song.id) :like(song.id) ),
+    mutationFn: () => (song.isLiked ? unlike(song.id) : like(song.id)),
     onSuccess: () => {
       onSuccess();
     },
@@ -24,7 +24,7 @@ export default function Like({
       {song.isLiked ? (
         <Heart className={"text-red-500"} fill={"#fb2c36"} />
       ) : (
-        <Heart className={"text-white"} />
+        <Heart className={"text-white hover:text-primary"} />
       )}
     </button>
   );

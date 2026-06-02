@@ -1,12 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Play, Pause, Repeat, SkipForward, SkipBack } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import Add from "../add-track";
 import Like from "../ui/like";
 import type { Song } from "@/type/artist";
+import useStore from "@/store/use-store";
 
 interface MusicPlayerProps {
-  song: Song;
+  song: Song | undefined;
   playlistId?: string;
   onLikeSuccess: () => void;
 }
@@ -18,23 +18,25 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const setPlayingSong = useStore((state) => state.setPlayingSong);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
-  const navigate = useNavigate();
-
   const onPrev = () => {
-    if (playlistId) {
-      navigate(`/playlists/${playlistId}/songs/${song.prevSongId}`);
-    } else navigate(`/songs/${song.prevSongId}`);
+    setPlayingSong({
+      songId: song!.prevSongId!,
+      playlistId: playlistId,
+    });
   };
 
   const onNext = () => {
-    if (playlistId) {
-      navigate(`/playlists/${playlistId}/songs/${song.nextSongId}`);
-    } else navigate(`/songs/${song.nextSongId}`);
+    setPlayingSong({
+      songId: song!.nextSongId!,
+      playlistId: playlistId,
+    });
   };
 
   // Load metadata
@@ -124,31 +126,22 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
     };
 
     tryPlay();
-  }, [song.previewUrl]);
+  }, [song?.previewUrl]);
 
   return (
     <div
-      className={`flex flex-col gap-2.5 p-4 bg-linear-to-r from-secondary to-primary rounded-xl shadow-lg text-white w-full`}
+      className={`flex gap-2 p-2 bg-black/20 text-white w-full justify-between`}
     >
-      <audio ref={audioRef} src={song.previewUrl} autoPlay />
-      <div className="flex gap-2">
-        <div className="flex items-center gap-2 w-full">
-          <span className="text-sm w-10">{formatTime(currentTime)}</span>
-
-          <input
-            type="range"
-            min={0}
-            max={duration || 0}
-            step={0.1}
-            value={currentTime}
-            onChange={handleSeek}
-            className="flex-1 accent-black cursor-pointer"
-          />
-
-          <span className="text-sm w-10 text-right">
-            {formatTime(duration)}
-          </span>
+      <audio ref={audioRef} src={song?.previewUrl} autoPlay />
+      <div className="flex gap-2 w-50">
+        <div className="flex gap-1 items-end">
+          <img src={song?.coverUrl} className="w-15 h-15 border-0 rounded-md" />
+          <div className="flex flex-col">
+            <span>{song?.artist.name}</span>
+            <span className="whitespace-nowrap">{song?.title}</span>
+          </div>
         </div>
+
         <button
           onClick={toggleLoop}
           className={`transition ${
@@ -156,41 +149,48 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
               ? "text-black hover:text-gray-700"
               : "text-white hover:text-gray-700"
           }`}
+        ></button>
+      </div>
+
+      <div className="flex justify-center items-center gap-3">
+        {song && <Like song={song} onSuccess={onLikeSuccess} />}
+        <button
+          onClick={onPrev}
+          disabled={!song?.prevSongId}
+          className="disabled:text-gray-500 hover:text-primary"
         >
-          <Repeat />
+          <SkipBack />
         </button>
-      </div>
-      {/* Controls */}
-      <div className="flex w-full justify-between items-center">
-        <Add songId={song.id} />
-        <div className="flex justify-center items-center gap-4 mb-3 w-full">
-          <button
-            onClick={onPrev}
-            disabled={!song.prevSongId}
-            className="disabled:text-gray-500 hover:text-black"
-          >
-            <SkipBack />
-          </button>
-
-          <button
-            onClick={togglePlay}
-            className="p-4 bg-black hover:bg-primary-dark rounded-full transition"
-          >
-            {isPlaying ? <Pause /> : <Play />}
-          </button>
-
-          <button
-            onClick={onNext}
-            disabled={!song.nextSongId}
-            className="disabled:text-gray-400 hover:text-black"
-          >
-            <SkipForward />
-          </button>
-        </div>
-        <Like song={song} onSuccess={onLikeSuccess} />
+        <button
+          onClick={togglePlay}
+          className="p-4 bg-black hover:bg-primary rounded-full transition"
+        >
+          {isPlaying ? <Pause /> : <Play />}
+        </button>
+        <button
+          onClick={onNext}
+          disabled={!song?.nextSongId}
+          className="disabled:text-gray-400 hover:text-primary"
+        >
+          <SkipForward />
+        </button>
+        <Repeat className="hover:text-primary" />
       </div>
 
-      {/* Progress */}
+      <div className="flex gap-2 items-center justify-center">
+        <span className="text-sm w-10">{formatTime(currentTime)}</span>
+        <input
+          type="range"
+          min={0}
+          max={duration || 0}
+          step={0.1}
+          value={currentTime}
+          onChange={handleSeek}
+          className="flex justify-end items-end accent-primary cursor-pointer w-100"
+        />
+        <span className="text-sm">{formatTime(duration)}</span>
+        {song && <Add songId={song.id} />}
+      </div>
     </div>
   );
 };
