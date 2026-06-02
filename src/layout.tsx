@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./components/sidebar/sidebar";
-import MiniPlayer from "./components/mini-player";
+import MusicPlayer from "./components/player/player";
 import { useIsMobile } from "./hooks/use-is-mobile";
 
 export default function SidebarLayout() {
@@ -21,7 +21,7 @@ export default function SidebarLayout() {
           <Outlet />
         </div>
         <div>
-          <MiniPlayer />
+          <MusicPlayer />
         </div>
       </div>
     </div>

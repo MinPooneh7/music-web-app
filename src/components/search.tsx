@@ -25,7 +25,7 @@ export default function Search() {
       <div className="flex flex-col text-6xl text-text gap-1 py-10">
         <span className="text-4xl px-2 text-white items-start">Search</span>
         <span className="text-xl px-2 text-gray-300">
-          Find your favorite artist
+          Find your favorite music!
         </span>
       </div>
 
@@ -35,7 +35,7 @@ export default function Search() {
             <SearchIcon className="text-white" />
           </div>
           <input
-            className="flex items-center justify-center w-full border-0 rounded-md ps-12 bg-gray-300/50 border-text py-2 hover:ring-10 ring-primary text-text px-2"
+            className="flex items-center justify-center w-full border-0 rounded-md ps-12 bg-gray-300/50 border-text py-2 hover:ring-5 ring-primary text-text px-2"
             placeholder="Search songs..."
             value={search}
             onChange={handleChange}

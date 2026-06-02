@@ -12,7 +12,7 @@ export default function Sidebar() {
     <div className="flex flex-col text-white gap-2 h-full bg-black/60 justify-between p-3 w-80">
       <div className="flex flex-col gap-7">
         <div className="flex gap-2 py-2 p-2 w-full justify-start text-2xl">
-          <Music className="text-secondary" size={28} />
+          <Music className="text-primary-muted" size={28} />
           Melody
         </div>
         <Explore />

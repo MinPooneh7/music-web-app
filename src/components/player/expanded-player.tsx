@@ -1,31 +1,26 @@
-import { getSong } from "@/api/song";
-import MiniPlayer from "@/components/player/mini-player";
-import { useQuery } from "@tanstack/react-query";
+import { X } from "lucide-react";
+import type { Song } from "../../type/artist";
 
-import { motion } from "motion/react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { convertTime } from "@/lib/utils";
+import useStore from "@/store/use-store";
 
-import { useParams } from "react-router-dom";
-
-export default function SongDetailsPage() {
-  const { songId, playlistId } = useParams();
-
-  const { isPending, error, data, refetch } = useQuery({
-    queryKey: ["song", songId],
-    queryFn: () => getSong(songId!, playlistId),
-  });
-
-  const onSongLikeSuccess = () => {
-    refetch();
-  };
+export default function ExpandedPlayer({
+  onClose,
+  song,
+}: {
+  onClose: () => void;
+  song: Song | undefined;
+}) {
+  const setPlayingSong = useStore((state) => state.setPlayingSong);
 
   return (
-    <motion.div
-      key={songId}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-      className="h-screen bg-linear-to-r from-primary to-secondary"
-    >
+    <div className="h-screen w-screen fixed inset-0 flex flex-col p-20 bg-black">
+      <X onClick={onClose} className="text-red-500" size={20} />
       {data && (
         <div className="flex flex-col gap-7 justify-center items-center w-screen p-17">
           <div className="text-text text-xl">{data.artist.shortBio}</div>
@@ -50,8 +45,6 @@ export default function SongDetailsPage() {
           </div>
         </div>
       )}
-      {isPending && <span>loading...</span>}
-      {error && <span>Something went wrong!</span>}
-    </motion.div>
+    </div>
   );
 }

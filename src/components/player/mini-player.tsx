@@ -1,5 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause, Repeat, SkipForward, SkipBack } from "lucide-react";
+import {
+  Play,
+  Pause,
+  Repeat,
+  SkipForward,
+  SkipBack,
+  Expand,
+} from "lucide-react";
 import Add from "../add-track";
 import Like from "../ui/like";
 import type { Song } from "@/type/artist";
@@ -9,12 +16,14 @@ interface MusicPlayerProps {
   song: Song | undefined;
   playlistId?: string;
   onLikeSuccess: () => void;
+  onExpand: () => void;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({
+const MiniPlayer: React.FC<MusicPlayerProps> = ({
   song,
   playlistId,
   onLikeSuccess,
+  onExpand,
 }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -189,10 +198,11 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({
           className="flex justify-end items-end accent-primary cursor-pointer w-100"
         />
         <span className="text-sm">{formatTime(duration)}</span>
-        {song && <Add songId={song.id} />}
+        {song && <Add songId={song.id} />}{" "}
+        {song && <Expand className="text-white" size={20} onClick={onExpand} />}
       </div>
     </div>
   );
 };
 
-export default MusicPlayer;
+export default MiniPlayer;
