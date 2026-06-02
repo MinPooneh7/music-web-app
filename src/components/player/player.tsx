@@ -27,7 +27,11 @@ export default function MusicPlayer() {
     <div className="flex">
       <div className="boarder-0 bg-black/50 w-full">
         {isExpanded ? (
-          {data && <ExpandedPlayer onClose={onClose} song={data} />}
+          <ExpandedPlayer
+            onClose={onClose}
+            song={data}
+            onLikeSuccess={onSongLikeSuccess}
+          />
         ) : (
           <MiniPlayer
             song={data}

@@ -1,14 +1,26 @@
 import { getPlayList } from "@/api/playlist/play-list";
+import useStore from "@/store/use-store";
+import type { PlayList } from "@/type/play-list";
 import { useQuery } from "@tanstack/react-query";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Playlist() {
   const { pathname } = useLocation();
+
+  const setPlayingSong = useStore((state) => state.setPlayingSong);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["song"],
     queryFn: getPlayList,
   });
+
+  const onClick = (playlist: PlayList) => {
+    if (playlist.playlistTrack?.length)
+      setPlayingSong({
+        songId: playlist.playlistTrack[0].songId,
+        playlistId: playlist.id,
+      });
+  };
 
   if (isLoading) return <div>Loading...</div>;
 
@@ -23,6 +35,8 @@ export default function Playlist() {
       {data?.playlists?.map((playlist, index) => {
         const isActive = pathname.includes(`/playlists/${playlist.id}`);
 
+        if (playlist.playlistTrack.length === 0) return;
+
         return (
           <div key={playlist.id}>
             <div
@@ -32,15 +46,15 @@ export default function Playlist() {
                   : "hover:bg-gray-300/40"
               }`}
             >
-              <Link
-                to={
-                  playlist.playlistTrack?.length
-                    ? `/playlists/${playlist.id}/songs/${playlist.playlistTrack[0].songId}`
-                    : "#"
-                }
+              <button
+                key={playlist.id}
+                className="border-b border-gray-300 last:border-b-0 w-full flex justify-start"
+                onClick={() => onClick(playlist)}
               >
-                <p className="truncate w-fit text-white">{playlist.name}</p>
-              </Link>
+                <span className="block text-white truncate">
+                  {playlist.name}
+                </span>
+              </button>
             </div>
 
             {index !== data.playlists.length - 1 && (
