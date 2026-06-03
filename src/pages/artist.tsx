@@ -12,25 +12,21 @@ export default function ArtistPage() {
   });
 
   return (
-    <div className="flex p-3 justify-start items-start">
+    <div className="items-center justify-center flex w-full">
       {data && (
-        <div className="flex flex-col gap-2">
-          <div className="border rounded-full p-2">
-            <div className="flex gap-7 items-center border rounded-full p-2 h-full w-full bg-gray-300/40 backdrop-blur-2xl border-gray-100">
-              <img
-                className="border rounded-full w-35 h-35"
-                src={data.imageUrl}
-              />
-              <div className="flex flex-col items-center justify-center text-text">
-                <div className="text-6xl"> {data.name}</div>
-                <div className="text-xl text-nowrap"> {data.activeYears} </div>
+        <div className="flex flex-col gap-2 p-1">
+          <div className="flex gap-2 items-center p-2 h-full w-full backdrop-blur-2xl border-gray-100 border-0 rounded-2xl bg-black/30">
+            <div className="flex flex-col">
+              <div className="flex flex-col items-center justify-center text-white">
+                <div className="text-3xl font-bold"> {data.name}</div>
+                <div className="text-sm text-nowrap">{data.activeYears} </div>
               </div>
-              <div className="leading-loose text-lg text-text">
+              <div className="leading-loose text-lg text-text text-center px-2">
                 {data.description}
               </div>
             </div>
           </div>
-          <div className="gap-2 grid grid-cols-1 lg:grid-cols-5">
+          <div className="flex flex-col w-full gap-1 py-5 px-4 border-0 rounded-2xl bg-black/30">
             {data.songs.map((song) => (
               <Song song={song} key={song.id} />
             ))}

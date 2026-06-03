@@ -77,36 +77,41 @@
   --primary: #2aa33f;
   --secondary: #d0cfd1;
   --primary-muted: #9fff8a;
-  --primary-dark: #2f7a31;
+  --primary-dark: #2f7a31; 
+  --text: #fff;
+  
 }
 
 .blue {
   --primary: #131661;
   --secondary: #d0cfd1;
   --primary-muted: #7d9bff;
-  --primaary-dark: #211a47;
+  --primary-dark: #211a47;
+  --text: #fff;
 }
 
 .red {
   --primary: #c20404;
-  --secondary: #d0cfd1;
+  --secondary: #4a0505;
   --primary-muted: #ff867d;
   --primary-dark: #660101;
+  --text: #fff;
 }
 
 .purple {
-  --primary: #331163;
+  --primary: #4b1991;
   --secondary: #292929;
   --primary-muted: #ca8aff;
   --primary-dark: #65157d;
+  --text: #fff;
 }
 
 .pink {
   --primary: #d450a1;
-  --secondary: #292929;
+  --secondary: #240118;
   --primary-muted: #ff8ac4;
   --primary-dark: #9e065f;
-  --text: #000;
+  --text: #fff;
 }
 
 .orange {
@@ -114,7 +119,7 @@
   --secondary: #292929;
   --primary-muted: #ffc07d;
   --primary-dark: #96380c;
-  --text: #000;
+  --text: #fff;
 }
 
 .gray {
@@ -122,6 +127,7 @@
   --secondary: #6e6e6e;
   --primary-muted: #adacad;
   --primary-dark: #878787;
+  --text: #fff;
 }
 
 

@@ -1,5 +1,6 @@
 import { X } from "lucide-react";
 import type { Song } from "../../type/artist";
+import { motion } from "motion/react";
 
 import useStore from "@/store/use-store";
 import ExpandedMusicPlayer from "./old";
@@ -14,11 +15,22 @@ export default function ExpandedPlayer({
   onLikeSuccess: () => void;
 }) {
   const playingSong = useStore((state) => state.playingSong);
+  const handleClick = () => {
+    onClose();
+  };
 
   return (
-    <div className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-start bg-linear-to-r from-primary to-secondary  pt-5 px-5">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+      className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-start bg-linear-to-r from-primary to-secondary  pt-5 px-5"
+    >
       <div className="w-full flex">
-        <X onClick={onClose} className="text-primary-muted" size={30} />
+        <X onClick={handleClick} className="text-primary-muted" size={30} />
       </div>
       {song && (
         <div className="flex flex-col gap-7 justify-center items-center w-full">
@@ -43,6 +55,6 @@ export default function ExpandedPlayer({
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

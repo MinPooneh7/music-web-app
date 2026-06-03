@@ -12,7 +12,7 @@ export default function Explore() {
         end
         className={({ isActive }) =>
           `${baseClass} ${
-            isActive ? "bg-secondary/50" : "hover:bg-secondary/50"
+            isActive ? "bg-primary-dark/50" : "hover:bg-primary-dark/50"
           }`
         }
       >
