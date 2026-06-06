@@ -12,7 +12,7 @@ export default function Explore() {
         end
         className={({ isActive }) =>
           `${baseClass} ${
-            isActive ? "bg-primary-dark/50" : "hover:bg-primary-dark/50"
+            isActive ? "bg-primary-dark/90" : "hover:bg-primary-dark/50"
           }`
         }
       >
@@ -23,9 +23,7 @@ export default function Explore() {
       <NavLink
         to="/search"
         className={({ isActive }) =>
-          `${baseClass} ${
-            isActive ? "bg-secondary/50" : "hover:bg-secondary/50"
-          }`
+          `${baseClass} ${isActive ? "bg-primary-dark/90" : "hover:bg-primary-dark/50"}`
         }
       >
         <Search />

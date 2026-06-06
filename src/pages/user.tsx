@@ -13,7 +13,7 @@ export default function UserPage() {
   const user = useStore((state) => state.user);
   const navigate = useNavigate();
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["song"],
     queryFn: () => getPlayList(),
   });
@@ -61,10 +61,7 @@ export default function UserPage() {
                 >
                   <p className="truncate w-fit text-text">{playlist.name}</p>
                 </Link>
-                <Delete 
-                id={playlist.id} 
-                onSuccess={()=> refetch()}
-                />
+                <Delete id={playlist.id} onSuccess={() => refetch()} />
               </div>
             ))}
           </div>

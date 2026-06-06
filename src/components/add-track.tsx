@@ -9,14 +9,15 @@ import { useState } from "react";
 export default function Add({ songId }: { songId: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { data } = useQuery({
-    queryKey: ["playlist"],
+  const { data, refetch } = useQuery({
+    queryKey: ["song"],
     queryFn: () => getPlayList(),
   });
 
   const { mutate } = useMutation({
     mutationFn: (playlistId: string) => addPlayList(playlistId, songId),
     onSuccess: () => {
+      refetch();
       setIsOpen(false);
     },
   });

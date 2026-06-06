@@ -17,12 +17,11 @@ export default function Delete({
   });
 
   const onDelete = () => {
-    console.log("hi")
     mutate();
   };
   return (
-      <button onClick={onDelete}>
-        <Trash className="text-red-600"/>
-      </button>
+    <button onClick={onDelete}>
+      <Trash className="text-red-600" />
+    </button>
   );
 }

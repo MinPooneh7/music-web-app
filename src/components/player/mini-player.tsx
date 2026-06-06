@@ -146,8 +146,8 @@ const MiniPlayer: React.FC<MusicPlayerProps> = ({
         <div className="flex gap-1 items-end">
           <img src={song?.coverUrl} className="w-15 h-15 border-0 rounded-md" />
           <div className="flex flex-col">
-            <span>{song?.artist.name}</span>
-            <span className="whitespace-nowrap">{song?.title}</span>
+            <span>{song?.title}</span>
+            <span className="whitespace-nowrap">{song?.artist.name}</span>
           </div>
         </div>
 
@@ -198,7 +198,7 @@ const MiniPlayer: React.FC<MusicPlayerProps> = ({
           className="flex justify-end items-end accent-primary cursor-pointer w-100"
         />
         <span className="text-sm">{formatTime(duration)}</span>
-        {song && <Add songId={song.id} />}{" "}
+        {song && <Add songId={song.id} />}
         {song && (
           <Expand className="text-primary-muted" size={20} onClick={onExpand} />
         )}
