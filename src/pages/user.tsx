@@ -8,7 +8,6 @@ import { getPlayList } from "@/api/playlist/play-list";
 import ThemePicker from "@/components/theme-picker";
 import Logout from "@/components/logout";
 import Delete from "@/components/ui/delete";
-import MusicPlayer from "@/components/player/player";
 import type { PlayList } from "@/type/play-list";
 
 export default function UserPage() {

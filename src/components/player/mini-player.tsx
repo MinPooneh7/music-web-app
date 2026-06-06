@@ -146,7 +146,7 @@ const MiniPlayer: React.FC<MusicPlayerProps> = ({
         <div className="flex gap-1 items-end">
           <img src={song?.coverUrl} className="w-15 h-15 border-0 rounded-md" />
           <div className="flex flex-col">
-            <span>{song?.title}</span>
+            <span className="text-nowrap">{song?.title}</span>
             <span className="whitespace-nowrap">{song?.artist.name}</span>
           </div>
         </div>
