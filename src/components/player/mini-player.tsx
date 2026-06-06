@@ -183,7 +183,16 @@ const MiniPlayer: React.FC<MusicPlayerProps> = ({
         >
           <SkipForward />
         </button>
-        <Repeat className="hover:text-primary" />
+        <button
+          onClick={toggleLoop}
+          className={`transition ${
+            isLooping
+              ? "text-primary-muted hover:text-white"
+              : "text-white hover:text-primary-muted"
+          }`}
+        >
+          <Repeat />
+        </button>
       </div>
 
       <div className="flex gap-2 items-center justify-center">

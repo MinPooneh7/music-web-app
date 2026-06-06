@@ -27,7 +27,7 @@ export default function ExpandedPlayer({
       transition={{
         duration: 0.5,
       }}
-      className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-start bg-linear-to-r from-primary to-secondary  pt-5 px-5"
+      className="h-screen w-screen fixed inset-0 flex flex-col items-center justify-start bg-linear-to-r from-primary to-secondary  pt-5 px-5 z-50"
     >
       <div className="w-full flex">
         <X onClick={handleClick} className="text-primary-muted" size={30} />

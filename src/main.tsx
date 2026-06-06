@@ -6,8 +6,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HomePage from "./pages/home";
 import ArtistPage from "./pages/artist";
 import { TooltipProvider } from "./components/ui/tooltip";
-import SongDetailsPage from "./pages/song";
-
 import { ThemeProvider } from "next-themes";
 
 import LoginPage from "./pages/login";
@@ -36,11 +34,6 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/playlists/:playlistId/songs/:songId",
-        element: <SongDetailsPage />,
-      },
-
-      {
         path: "/user",
         element: <UserPage />,
       },
@@ -61,10 +54,6 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUpPage />,
-  },
-  {
-    path: "/songs/:songId",
-    element: <SongDetailsPage />,
   },
 ]);
 
