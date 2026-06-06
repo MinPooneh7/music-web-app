@@ -17,7 +17,7 @@ export default function Logout() {
     <div>
       <button
         onClick={() => mutate()}
-        className="text-red-600 text-3xl font-bold"
+        className="text-red-600 text-3xl font-bold border-0 rounded-2xl bg-white/30 px-10 py-2 h-15"
       >
         Log out
       </button>

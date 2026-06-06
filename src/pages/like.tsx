@@ -30,11 +30,7 @@ export default function LikesPage() {
           </div>
           <div className="flex flex-col w-full gap-1 py-5 px-4 border-0 rounded-2xl bg-black/50">
             {data.map((like) => (
-              <Song
-                song={like.song}
-                key={like.id}
-                heroColor={like.song.artist.heroColor}
-              />
+              <Song song={like.song} key={like.id} isFromFavorites />
             ))}
           </div>
         </div>

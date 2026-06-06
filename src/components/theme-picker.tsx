@@ -32,14 +32,14 @@ export default function ThemePicker() {
   const { setTheme } = useTheme();
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <span className="text-text text-2xl font-bold">Themes</span>
+    <div className="flex flex-col gap-2">
+      <span className="text-text text-2xl font-bold p-2">Themes</span>
       <div className="grid grid-cols-4 gap-3">
         {THEMES.map((theme, index) => (
           <HoverCard>
             <HoverCardTrigger>
               <div
-                className="p-7 rounded-full "
+                className="p-5 rounded-full border-7 border-white/20"
                 key={index}
                 style={{
                   backgroundColor:

@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 interface PlayingSong {
   songId: string | undefined;
-  playlistId: string | undefined;
+  playlistId: string | undefined; // "favorites" for liked song
 }
 
 interface Store {

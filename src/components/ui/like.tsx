@@ -24,7 +24,7 @@ export default function Like({
       {song.isLiked ? (
         <Heart className={"text-red-500"} fill={"#fb2c36"} />
       ) : (
-        <Heart className={"text-white hover:text-primary"} />
+        <Heart className={"text-white hover:text-primary-muted"} />
       )}
     </button>
   );

@@ -32,7 +32,7 @@ export default function SettingsAvatar() {
     <button onClick={handleAvatarClick} className="relative group">
       <img
         src={user?.avatar || Profile}
-        className="border rounded-full w-50 h-50 group-hover:opacity-50"
+        className="border-4 border-white/30 rounded-full w-40 h-40 group-hover:opacity-50"
       />
       <div className="hidden group-hover:flex absolute inset-0 w-full h-full justify-center items-center">
         <Pencil className="text-white" size={40} />

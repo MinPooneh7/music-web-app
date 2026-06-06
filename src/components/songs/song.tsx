@@ -1,22 +1,34 @@
 import type { Song } from "../../type/artist";
 
 import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip";
-import { convertTime } from "@/lib/utils";
+import { cn, convertTime } from "@/lib/utils";
 import useStore from "@/store/use-store";
 import { Play } from "lucide-react";
 
-export default function Artist({ song }: { song: Song }) {
+export default function Song({
+  song,
+  isFromFavorites,
+}: {
+  song: Song;
+  isFromFavorites?: boolean;
+}) {
   const setPlayingSong = useStore((state) => state.setPlayingSong);
+  const playingSong = useStore((state) => state.playingSong);
+
+  const isPlaying = playingSong?.songId === song.id;
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <button
-          className="flex items-center gap-3 w-full h-17 rounded-xl bg-black/25 hover:bg-white/20 px-3"
+          className={cn(
+            "flex items-center gap-3 w-full h-17 rounded-xl hover:bg-white/10 px-3",
+            isPlaying ? "bg-white/10" : " bg-black/25",
+          )}
           onClick={() =>
             setPlayingSong({
               songId: song.id,
-              playlistId: undefined,
+              playlistId: isFromFavorites ? "favorites" : undefined,
             })
           }
         >

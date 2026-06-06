@@ -21,35 +21,41 @@ export default function UserPage() {
   useEffect(() => {
     if (!user) navigate("/login");
   }, [user, navigate]);
+
   return (
-    <div className="flex gap-4 h-screen p-17">
-      <div className="justify-between max-w-7xl mx-auto bg-gray-300/40 overflow-auto backdrop-blur-2xl border-primary rounded-2xl flex flex-col gap-9 p-7 items-center w-full">
+    <div className="flex gap-4 h-full py-17">
+      <div className="max-w-7xl mx-auto bg-gray-300/40 overflow-auto border-primary rounded-4xl flex flex-col justify-between gap-9 p-7 w-full">
         <div className="flex flex-col gap-5">
-          <div className="flex items-center justify-between w-full">
-            <div className="flex gap-9 items-center">
+          <div className="flex items-center justify-between w-full px-50">
+            <div className="flex gap-3 items-center">
               <SettingsAvatar />
+
               <div className="flex flex-col">
                 <div className="text-text font-bold text-4xl">
                   {user?.username}
                 </div>
+
                 <div className="text-text">{user?.email}</div>
               </div>
             </div>
+
             <ThemePicker />
           </div>
-          <div className="border-2 rounded-4xl overflow-clip px-5 py-2 hover:bg-gray-300/40 backdrop-blur-1xl border-primary">
+
+          <div className="border-0 rounded-xl overflow-clip px-5 py-2 bg-white/20  hover:bg-gray-300/40 backdrop-blur-xl border-primary h-15">
             <Link
-              to={"/likes"}
-              className="font-bold items-center justify-center text-2xl text-white truncate"
+              to="/likes"
+              className="flex items-center justify-center w-full h-full text-2xl font-bold text-text"
             >
-              <p className="truncate w-fit text-text">Liked songs</p>
+              Favorite
             </Link>
           </div>
+
           <div className="flex flex-col gap-5 w-full">
-            {data?.playlists.map((playlist, index) => (
+            {data?.playlists.map((playlist) => (
               <div
-                className="flex gap-2 border-2 rounded-4xl overflow-clip px-5 py-2 hover:bg-gray-300/40 backdrop-blur-2xl border-primary items-center justify-between"
-                key={index}
+                key={playlist.id}
+                className="flex items-center justify-between gap-2 rounded-xl bg-white/20 px-5 py-2 hover:bg-gray-300/40 backdrop-blur-2xl h-15"
               >
                 <Link
                   to={
@@ -57,16 +63,20 @@ export default function UserPage() {
                       ? `/playlists/${playlist.id}/songs/${playlist.playlistTrack[0].songId}`
                       : ""
                   }
-                  className="font-bold items-center justify-center text-2xl text-white truncate"
+                  className="font-bold text-2xl text-white truncate"
                 >
-                  <p className="truncate w-fit text-text">{playlist.name}</p>
+                  <p className="truncate text-text">{playlist.name}</p>
                 </Link>
+
                 <Delete id={playlist.id} onSuccess={() => refetch()} />
               </div>
             ))}
           </div>
         </div>
-        <Logout />
+
+        <div className="flex justify-center items-center w-full">
+          <Logout />
+        </div>
       </div>
     </div>
   );
