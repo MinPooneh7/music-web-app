@@ -44,7 +44,7 @@ export default function ExpandedPlayer({
             </div>
             <div className="text-black text-4xl">{song?.title}</div>
             <div className="text-black text-2xl">{song?.artist.name}</div>
-            <div className="flex flex-co">
+            <div className="flex flex-col">
               <ExpandedMusicPlayer
                 song={song}
                 key={song.id}

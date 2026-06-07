@@ -7,8 +7,8 @@ import {
   SkipBack,
   Expand,
 } from "lucide-react";
-import Add from "../add-track";
-import Like from "../ui/like";
+import Add from "../playlist/add-track";
+import Like from "../like";
 import type { Song } from "@/type/artist";
 import useStore from "@/store/use-store";
 

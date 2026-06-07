@@ -1,5 +1,5 @@
 import { getPlayList } from "@/api/playlist/play-list";
-import CreatePlayList from "../create-playlist";
+import CreatePlayList from "../playlist/create-playlist";
 import { useQuery } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import { NavLink } from "react-router-dom";
